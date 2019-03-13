@@ -34,3 +34,13 @@ Shell script security
 Intermediate security concepts
 1. Buffer overflows
 2. Integer overflows
+
+## Setup guide
+Each level contains an admin setup file that discuses what steps to take when
+setting up initially. Each level is a user on the system, and as students
+progress, their account is added to the level groups which they have completed.
+
+The default user directory is `/home/` but I find it cleaner if the level data
+is stored under `/ctf/level{0..N}` instead.
+
+The `levelN` binaries should be runable 
