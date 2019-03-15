@@ -9,7 +9,7 @@ sudo makedir /ctf/
 # Create all necessary accounts
 for N in {0..15}; do
     ID=$((16000 + $N))
-    sudo useradd --home-dir /ctf/level$N --shell /usr/sbin/nologin --password '!!' --comment \"CTF level $N\" --create-home --uid $ID level$N
+    sudo useradd --home-dir /ctf/level$N --shell /usr/sbin/nologin --password '!!' --comment "CTF level $N" --create-home --uid $ID level$N
     echo "Created user: level$N"
 done
 
@@ -20,7 +20,8 @@ done
 sudo chmod 555 /ctf/level0
 
 for N in {1..15}; do
-    PREV=$N-1
-    sudo chmod 550 /ctf/level$N 
-    sudo chown level$N:level$PREV /ctf/level$N 
+    PREV=$(($N-1))
+    sudo chmod 550 /ctf/level$N
+    sudo chown level$N:level$PREV /ctf/level$N
 done
+
