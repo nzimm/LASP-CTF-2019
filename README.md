@@ -28,7 +28,7 @@ Linux command line. After reaching level 5, you should be able to:
 ## Level group 2
 Shell script security
 1. Environment manipulation
-2. Input sanitization
+2. Input sanitation
 
 ## Level group 3
 Intermediate security concepts
@@ -36,11 +36,16 @@ Intermediate security concepts
 2. Integer overflows
 
 ## Setup guide
+Setup scripts live in the `setup/` directory - they use sudo, as root
+premissions are required to create the directories, add users, etc.
+
+### Level initialization
+Levels are contained in `/ctf/` and are created with empty subdirectories by
+running the `init_levels.sh` script.
+
 Each level contains an admin setup file that discuses what steps to take when
-setting up initially. Each level is a user on the system, and as students
-progress, their account is added to the level groups which they have completed.
+setting up initially.
 
-The default user directory is `/home/` but I find it cleaner if the level data
-is stored under `/ctf/level{0..N}` instead.
-
-The `levelN` binaries should be runable 
+### User creation
+The `make_users.sh` script reads names from the `users.txt` file and creates
+accounts for them.
