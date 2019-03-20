@@ -9,7 +9,7 @@ int main()
     printf("Real GID: %d\nEffective GID: %d\n", getgid(), getegid());
 
 
-    char *argv[] = { NULL};
+    char *argv[] = { "./levelup", NULL};
     char *envp[] = { NULL };
 
     execve("./levelup", argv, envp);
