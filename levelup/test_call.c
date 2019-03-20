@@ -3,6 +3,10 @@
 #include <stdio.h>
 #include <pwd.h>
 
+/*
+ * mimick a level program that has been broken
+ *   binary should have SetGID bit set
+*/
 int main()
 {
     printf("Real UID: %d\nEffective UID: %d\n", getuid(), geteuid());
