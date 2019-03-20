@@ -6,23 +6,24 @@
 #include <sys/types.h>
 
 /*
- * Inputs:  user to be leveled up
- * Outputs: N/a
- *
- * Verifies the caller's UID is allowed to modify user groups
+ * Checks calling user's RGID and EGID
+ *   if they do not agree, then user is added to EGID group
+ *   otherwise, print a rude message 
  */
 int main(int argc, char* argv[])
 {
-    if (argc != 2) {
-        printf("usage: %s USERNAME\n\n  USERNAME    name of user to levelup\n", argv[0]);
+    if (argc != 1) {
+        printf("usage: %s\n", argv[0]);
         return 1;
     }
 
-    printf("Real: %d\nEffective: %d\n", getuid(), geteuid());
+    printf("Real UID: %d\nEffective UID: %d\n", getuid(), geteuid());
+    printf("Real GID: %d\nEffective GID: %d\n", getgid(), getegid());
     
-    seteuid(getuid());
+    setegid(getgid());
 
-    printf("Real: %d\nEffective: %d\n", getuid(), geteuid());
+    printf("Real UID: %d\nEffective UID: %d\n", getuid(), geteuid());
+    printf("Real GID: %d\nEffective GID: %d\n", getgid(), getegid());
 
     return 0;
 }

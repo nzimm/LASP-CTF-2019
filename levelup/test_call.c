@@ -5,9 +5,11 @@
 
 int main()
 {
-    printf("Real: %d\nEffective: %d\n", getuid(), geteuid());
+    printf("Real UID: %d\nEffective UID: %d\n", getuid(), geteuid());
+    printf("Real GID: %d\nEffective GID: %d\n", getgid(), getegid());
 
-    char *argv[] = { "./levelup", "test", NULL};
+
+    char *argv[] = { NULL};
     char *envp[] = { NULL };
 
     execve("./levelup", argv, envp);
