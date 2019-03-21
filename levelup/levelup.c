@@ -37,9 +37,11 @@ int main(int argc, char* argv[])
     strncpy(user, name, sizeof(user));
 
     // Save groupname in buffer
-    name = getpwuid(group_ID)->pw_name;
+    name = getpwuid(group_ID + 1)->pw_name;
     char group[strlen(name) + 1];
     strncpy(group, name, sizeof(group));
+
+    printf("adding %s to group %s...\n", user, group);
 
     // Check that user has completed a level, and called this program with
     // the setGID bit
@@ -47,7 +49,7 @@ int main(int argc, char* argv[])
 
         // Check that the EGID is of a valid level, and not from some other
         // program with the setGID bit set
-        if (16000 <= group_ID && group_ID <= 16015) {
+        if (16000 <= group_ID && group_ID < 16015) {
             char *gpasswd = "/usr/bin/gpasswd";
             char *argv[] = { gpasswd, "-a", user, group, NULL};
             char *envp[] = { NULL };
