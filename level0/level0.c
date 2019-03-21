@@ -35,7 +35,13 @@ int main()
         user_data = getpwuid(ruid);
 
         if ( strncmp(user_data->pw_shell, bash_shell, strlen(bash_shell)) == 0 ) {
-            printf("TODO: implement level-up mechanism\n");
+            printf("Feel free to set your login shell to your preference.\n");
+            
+            // Call levelup
+            char *levelup = "/usr/local/bin/levelup";
+            char *argv[] = { levelup, NULL};
+            char *envp[] = { NULL };
+            execve(levelup, argv, envp);
         }
 
         else {
