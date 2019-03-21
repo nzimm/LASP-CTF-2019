@@ -14,14 +14,13 @@ for N in {0..15}; do
 done
 
 # Setup permissions
-#   must solve and join the group for level(N-1) to work on levelN
+#   must solve levelN to be added to the group for level(N+1)
 
 # Make sure everyone can access level0
 sudo chmod 555 /ctf/level0
 
 for N in {1..15}; do
-    PREV=$(($N-1))
     sudo chmod 550 /ctf/level$N
-    sudo chown level$N:level$PREV /ctf/level$N
+    sudo chown level$N:level$N /ctf/level$N
 done
 
