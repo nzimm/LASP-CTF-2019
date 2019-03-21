@@ -34,14 +34,12 @@ int main(int argc, char* argv[])
     // Save username in buffer
     char *name = getpwuid(user_ID)->pw_name;
     char user[strlen(name) + 1];
-    strncpy(user, name, strlen(name));
+    strncpy(user, name, sizeof(user));
 
     // Save groupname in buffer
     name = getpwuid(group_ID)->pw_name;
     char group[strlen(name) + 1];
-    strncpy(group, name, strlen(name));
-
-    printf("user: %s\ngroup: %s\n", user, group);
+    strncpy(group, name, sizeof(group));
 
     // Check that user has completed a level, and called this program with
     // the setGID bit
@@ -50,14 +48,18 @@ int main(int argc, char* argv[])
         // Check that the EGID is of a valid level, and not from some other
         // program with the setGID bit set
         if (16000 <= group_ID && group_ID <= 16015) {
-            printf("Adding user %s to group %s...\n", user, group);
-
-            char *usermod = "/usr/bin/usermod";
-            char *argv[] = { usermod, "-a", "-G", group, user, NULL};
+            char *gpasswd = "/usr/bin/gpasswd";
+            char *argv[] = { gpasswd, "-a", user, group, NULL};
             char *envp[] = { NULL };
 
-            execve(usermod, argv, envp);
+            // Grant root to update /etc/groups
+            setresuid(0,0,0);
 
+            // execve 'consumes' current process
+            execve(gpasswd, argv, envp);
+
+            // This does not execute
+            return 2;
         }
         else {
             return(error());
