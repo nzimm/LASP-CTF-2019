@@ -13,7 +13,6 @@ summary:
 - You will have an account created on the training host
 - Level material can be found the `/ctf/` directory
 - Starting at `level0`, `objective.md` contains the challenge details
-- After solving a level, run the system command `levelup` to unlock the next
   level
 
 ## Level group 1 (delim TBD)
