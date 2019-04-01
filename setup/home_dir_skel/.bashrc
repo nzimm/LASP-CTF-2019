@@ -26,7 +26,6 @@ function parse_git_branch() {
 }
 
 # These colors require xterm-256 colors
-# TODO we should have a test for 256 colors, and fail-back to standard colors
 GREEN="\[$(tput setaf 34)\]"
 BLUE="\[$(tput setaf 27)\]"
 PURPLE="\[$(tput setaf 57)\]"
@@ -39,10 +38,3 @@ if [[ "$(whoami)" == "root" ]]; then
 else
     PS1="${PURPLE}[\u@\h \w]${RESET}\`parse_git_branch\`${PURPLE}\$${RESET} "
 fi
-
-# PROMPT_COMMAND runs before displaying prompt
-#   Save current working directory to volatile storage
-PROMPT_COMMAND='pwd > "${XDG_RUNTIME_DIR}/.cwd"'
-
-# New terminals cd into PWD, rather than at home dir
-[[ -f "${XDG_RUNTIME_DIR}/.cwd" ]] && cd "$(< ${XDG_RUNTIME_DIR}/.cwd)"
