@@ -1,0 +1,65 @@
+#!/usr/bin/env python
+#
+# scoreboard.py
+#   lists all user's highscore in descending order
+#   reads directly from /etc/group, which just so happens to order users by
+#   time added to group
+#
+
+import sys
+
+
+def print_level(level, users):
+    print("---------- {} ----------".format(level))
+    for user in users:
+        print("  {}".format(user), end='')
+    print("\n")
+
+
+def main():
+    
+    # We only care about groups level0-15
+    levels = []
+    for i in range(0,16): levels.append('level{}'.format(i))
+
+    # Levels with users
+    scores = []
+
+    # Print each user at their highest level
+    printed = []
+
+    # Parse groups file
+    with open("/etc/group", "r") as FILE:
+        for line in FILE:
+            fields = line.split(':')
+
+            # Skip levels with no users
+            if fields[0] in levels and fields[-1] != '\n':
+                scores.append(fields)
+            
+    # Sort the fields in reverse level order
+    scores.sort(key=lambda i: i[0], reverse=True)
+
+    # Output scoreboard
+    for level in scores:
+
+        # List of users who have reached level
+        level_users = level[-1].strip().split(',')
+
+        # Only print a user at their highest level
+        users_to_print = []
+        for user in level_users:
+
+            # If user hasn't been printed, mark them as printed and to-be-printed
+            if user not in printed:
+                printed.append(user)
+                users_to_print.append(user)
+
+        # Don't print levels beaten by everyone/no one
+        if len(users_to_print) > 0:
+            print_level(level[0], users_to_print)
+        
+    return 0
+
+if __name__ == '__main__':
+    sys.exit(main())
