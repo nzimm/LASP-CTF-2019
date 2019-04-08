@@ -2,10 +2,11 @@
 #include <string.h>
 #include <unistd.h>
 #include <pwd.h>
+#include <grp.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 
-int main()
+int main(int argc, char *argv[])
 {
     // Get user's home directory
     uid_t user_ID = getuid();
@@ -15,8 +16,27 @@ int main()
 
     printf("home dir: %s\n", home_dir);
 
+    // Check for special file
+    char *file_name = "turnip.txt";
+    char file_path[strlen(home_dir) + strlen(file_name) + 2];
+    sprintf(file_path, "%s/%s", home_dir, file_name);
+
+    struct stat result_file;
+    if ( stat(file_path, &result_file) != -1 ) {
+        // DEBUG
+        printf("%s has group %s\n", file_path, getgrgid(result_file.st_gid)->gr_name);
+    }
+    else {
+        printf("%s: error: couldn't stat %s\n", argv[0], file_path);
+    }
+    struct stat result_home_dir;
+
     // Check user's home directory permissions
     printf("Checking permissions...\n");
+
+    if (stat(home_dir, &result_home_dir) != -1) {
+        printf("%o\n", result_home_dir.st_mode);
+    }
 
     return 0;
 }
