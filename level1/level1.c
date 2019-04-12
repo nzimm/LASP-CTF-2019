@@ -14,28 +14,33 @@ int main(int argc, char *argv[])
     char home_dir[strlen(home_dir_temp) + 1];
     strncpy(home_dir, home_dir_temp, sizeof(home_dir));
 
-    printf("home dir: %s\n", home_dir);
-
-    // Check for special file
-    char *file_name = "turnip.txt";
+    // Check that turnip exists
+    char *file_name = ".turnip.txt";
     char file_path[strlen(home_dir) + strlen(file_name) + 2];
     sprintf(file_path, "%s/%s", home_dir, file_name);
 
-    struct stat result_file;
-    if ( stat(file_path, &result_file) != -1 ) {
-        // DEBUG
-        printf("%s has group %s\n", file_path, getgrgid(result_file.st_gid)->gr_name);
+    struct stat file_stat;
+    // Check that file exists
+    if ( stat(file_path, &file_stat) != -1 ) {
+
+        // Check that file has correct group and permissions
+        const char *file_grp = getgrgid(file_stat.st_gid)->gr_name;
+        if ( (access(file_path, X_OK)) && (strcmp(file_grp, "level0") == 0) ) {
+
+            // Call levelup
+            char *levelup = "/usr/local/bin/levelup";
+            char *argv[] = { levelup, NULL};
+            char *envp[] = { NULL };
+            execve(levelup, argv, envp);
+        }
+
+        // Check that file is executable
+        else if (access(file_path, X_OK) == 0) {
+            printf("File is executable\n");
+        }
     }
     else {
-        printf("%s: error: couldn't stat %s\n", argv[0], file_path);
-    }
-    struct stat result_home_dir;
-
-    // Check user's home directory permissions
-    printf("Checking permissions...\n");
-
-    if (stat(home_dir, &result_home_dir) != -1) {
-        printf("%o\n", result_home_dir.st_mode);
+        printf("%s: error: make sure to read the objectives...\n", argv[0]);
     }
 
     return 0;
