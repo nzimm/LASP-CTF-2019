@@ -34,6 +34,6 @@ if [ $? -eq 0 ]; then
     done
 
     echo "sudo chmod g+s $DIR/$LEVEL"
-    sudo chmod g+s $DIR/$LEVEL
+    sudo chmod 2755 $DIR/$LEVEL
 
 fi

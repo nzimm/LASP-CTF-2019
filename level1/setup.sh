@@ -7,7 +7,7 @@
 LEVEL="level1"
 
 # Files to be copied and chowned only
-FILES="objective.md"
+FILES="objective.md level1.c"
 
 # Level directory (default to level)
 DIR="/ctf/$LEVEL"
@@ -33,7 +33,7 @@ if [ $? -eq 0 ]; then
         sudo chown $LEVEL:$LEVEL $DIR/$F
     done
 
-    echo "sudo chmod g+s $DIR/$LEVEL"
-    sudo chmod g+s $DIR/$LEVEL
+    echo "sudo chmod 2644 $DIR/$LEVEL"
+    sudo chmod 2755 $DIR/$LEVEL
 
 fi
