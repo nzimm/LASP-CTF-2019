@@ -41,8 +41,6 @@ int main(int argc, char* argv[])
     char group[strlen(name) + 1];
     strncpy(group, name, sizeof(group));
 
-    printf("adding %s to group %s...\n", user, group);
-
     // Check that user has completed a level, and called this program with
     // the setGID bit
     if (user_ID != group_ID) {
