@@ -11,5 +11,7 @@ for USER in $(cat users.txt); do
         sudo useradd --home-dir /home/$USER --skel ./home_dir_skel --shell /usr/bin/fish --password '!!' -G level0 --create-home --key UID_MIN=1000 --key UID_MAX=15999 $USER
         sudo chmod 755 /home/$USER
         echo "Created user: $USER"
+    else
+        echo "directory /home/$USER already exists"
     fi
 done
