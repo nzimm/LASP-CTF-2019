@@ -36,6 +36,7 @@ int main()
 
         if ( strncmp(user_data->pw_shell, bash_shell, strlen(bash_shell)) == 0 ) {
             printf("Feel free to set your login shell to your preference.\n");
+            printf("You may now proceed to level1...\n");
             
             // Call levelup
             char *levelup = "/usr/local/bin/levelup";

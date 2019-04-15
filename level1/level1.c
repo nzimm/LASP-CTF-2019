@@ -27,6 +27,8 @@ int main(int argc, char *argv[])
         const char *file_grp = getgrgid(file_stat.st_gid)->gr_name;
         if ( (access(file_path, X_OK)) && (strcmp(file_grp, "level0") == 0) ) {
 
+            printf("Well done! Feel free to proceed to level 2\n");
+
             // Call levelup
             char *levelup = "/usr/local/bin/levelup";
             char *argv[] = { levelup, NULL};
@@ -34,9 +36,9 @@ int main(int argc, char *argv[])
             execve(levelup, argv, envp);
         }
 
-        // Check that file is executable
-        else if (access(file_path, X_OK) == 0) {
-            printf("File is executable\n");
+        // Conditions not met
+        else {
+            printf("Make sure the file has correct group and permissions\n");
         }
     }
     else {
