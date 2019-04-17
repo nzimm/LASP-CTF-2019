@@ -4,14 +4,14 @@
 #   requirements:
 #       /dev/urandom
 #       /usr/bin/dd
-#   sample command (using the variables defined below):
-#       dd if=/dev/urandom of=./data/file$I.dat bs=$BLOCKSIZE count=$BLOCKS
 #
 
 BLOCKS=1000
 BLOCKSIZE=1024
+DIR="/home/nizi2734/ctf.git/level2/data"
+SOURCE="/dev/urandom"
 N=9
 
 for I in $(seq $N); do
-    echo $I
+    dd if=$SOURCE of=$DIR/file$I.dat count=$BLOCKS bs=$BLOCKSIZE
 done
