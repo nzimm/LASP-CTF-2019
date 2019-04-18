@@ -7,6 +7,6 @@ grep - your new best friend. You may want to try various flags so grep will
        print matching patterns
 
 ## Tips
-- The password string is between 5 and 20 characters long
-- Entirely alphanumeric (no symbols)
-- You may find more than one password contained within the data files
+- The password string is a 16 character hex string
+- You may find more than one password contained within the data files, but only
+  one is correct
