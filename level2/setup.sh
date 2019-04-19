@@ -22,6 +22,7 @@ USER="$LEVEL"
 
 
 # Run the makefile
+echo "make clean && make"
 make clean && make
 
 # Generate data files
@@ -59,4 +60,7 @@ if [ $? -eq 0 ]; then
 fi
 
 # Clean up
+echo "make clean"
 make clean
+echo "rm pass.txt"
+rm pass.txt
