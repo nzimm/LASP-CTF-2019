@@ -37,3 +37,6 @@ if [ $? -eq 0 ]; then
     sudo chmod 2755 $DIR/$LEVEL
 
 fi
+
+# Clean up
+make clean
