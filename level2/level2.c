@@ -20,8 +20,13 @@ int main()
     printf("Password: ");
     fgets(guess, PASSLEN, stdin);
 
+    // Stall for effect
+    sleep(3);
+
     // Check answer - both `fish` and `/usr/bin/fish` are valid
     if ( strncmp(guess, passwd, PASSLEN) == 0 ) {
+        printf("Correct!\n");
+
         // Call levelup
         char *levelup = "/usr/local/bin/levelup";
         char *argv[] = { levelup, NULL};
