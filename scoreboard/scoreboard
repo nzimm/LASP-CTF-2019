@@ -10,14 +10,22 @@ import sys
 
 
 def print_level(level, users):
-    print("---------- {} ----------".format(level))
+    print(" ------------------- {} --------------------".format(level))
     for user in users:
         print("  {}".format(user), end='')
     print("\n")
 
 
 def main():
-    
+
+    # Print header
+    header = '#################################################\n' +\
+             '                   Scoreboard\n' +\
+             '#################################################'
+    print(header)
+
+
+
     # We only care about groups level0-15
     levels = []
     for i in range(0,16): levels.append('level{}'.format(i))
@@ -36,7 +44,7 @@ def main():
             # Skip levels with no users
             if fields[0] in levels and fields[-1] != '\n':
                 scores.append(fields)
-            
+
     # Sort the fields in reverse level order
     scores.sort(key=lambda i: i[0], reverse=True)
 
@@ -58,7 +66,7 @@ def main():
         # Don't print levels beaten by everyone/no one
         if len(users_to_print) > 0:
             print_level(level[0], users_to_print)
-        
+
     return 0
 
 if __name__ == '__main__':
