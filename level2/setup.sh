@@ -62,5 +62,5 @@ fi
 # Clean up
 echo "make clean"
 make clean
-echo "rm pass.txt"
-rm pass.txt
+echo "rm -r pass.txt data/"
+rm -r pass.txt data/
