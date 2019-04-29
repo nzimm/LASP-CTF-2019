@@ -23,7 +23,6 @@ int main()
     // Stall for effect
     sleep(3);
 
-    // Check answer - both `fish` and `/usr/bin/fish` are valid
     if ( strncmp(guess, passwd, PASSLEN) == 0 ) {
         printf("Correct!\n");
 
