@@ -77,36 +77,3 @@ with open(urand, "rb") as URAND:
                 with open(data_file_path, "wb") as OUT_FILE:
                     OUT_FILE.write(URAND.read(file_size))
                     OUT_FILE.close()
-
-
-
-
-
-
-
-## Choose 3 files to hide a password in
-#selected_files = random.sample(range(0, num_files), 3)
-#
-## Read raw bytes from random source
-#with open(urand, "rb") as URAND:
-#
-#    # Create data files
-#    for i in range(0, num_files):
-#        data_file_path = os.path.join(data_directory, "file" + str(i) + ".dat")
-#
-#        with open(data_file_path, "wb") as OUT_FILE:
-#            # Randomly select size of file to generate
-#            file_size = random.randrange(file_size_min, file_size_max)
-#            OUT_FILE.write(URAND.read(file_size))
-#
-#            # Hide random password in file
-#            if i in selected_files:
-#                buf = URAND.read(128)
-#                m.update(buf)
-#                passwd = "password:" + m.hexdigest()[0:16]
-#                OUT_FILE.seek(random.randrange(0, file_size))
-#                print("writing {} to {}".format(passwd, data_file_path))
-#                OUT_FILE.write(bytes(passwd, 'utf-8'))
-#
-#            OUT_FILE.close()
-#    URAND.close()
