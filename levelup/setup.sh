@@ -24,3 +24,7 @@ if [ $? -eq 0 ]; then
     sudo chmod u+s $DIR/$LEVELUP
 
 fi
+
+# Cleanup
+echo rm levelup
+rm levelup

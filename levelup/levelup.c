@@ -32,14 +32,14 @@ int main(int argc, char* argv[])
     gid_t group_ID = getegid();
 
     // Save username in buffer
-    char *name = getpwuid(user_ID)->pw_name;
-    char user[strlen(name) + 1];
-    strncpy(user, name, sizeof(user));
+    char *user_t = getpwuid(user_ID)->pw_name;
+    char user[strlen(user_t) + 1];
+    strncpy(user, user_t, sizeof(user));
 
     // Save groupname in buffer
-    name = getpwuid(group_ID + 1)->pw_name;
-    char group[strlen(name) + 1];
-    strncpy(group, name, sizeof(group));
+    char *group_t = getpwuid(group_ID)->pw_name;
+    char group[strlen(group_t) + 1];
+    strncpy(group, group_t, sizeof(group));
 
     // Check that user has completed a level, and called this program with
     // the setGID bit
@@ -48,8 +48,14 @@ int main(int argc, char* argv[])
         // Check that the EGID is of a valid level, and not from some other
         // program with the setGID bit set
         if (16000 <= group_ID && group_ID < 16015) {
+
+            // get next level's group name
+            char *next_level_t = getpwuid(group_ID+1)->pw_name;
+            char next_level[strlen(next_level_t) + 1];
+            strncpy(next_level, next_level_t, sizeof(next_level));
+
             char *gpasswd = "/usr/bin/gpasswd";
-            char *argv[] = { gpasswd, "-a", user, group, NULL};
+            char *argv[] = { gpasswd, "-a", user, next_level, NULL};
             char *envp[] = { NULL };
 
             // Grant root to update /etc/groups
