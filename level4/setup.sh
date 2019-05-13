@@ -46,8 +46,8 @@ if [ $? -eq 0 ]; then
     sudo chmod 440 $DIR/pass.txt
 
     # Chown files to levelN:levelN
-    echo "sudo chown -R $LEVEL:$LEVEL $DIR/*"
-    sudo chown -R $LEVEL:$LEVEL $DIR/*
+    echo "sudo chown -R $USER:$USER $DIR/*"
+    sudo chown -R $USER:$USER $DIR/*
 
     # Make additional files executable
     echo "sudo chmod 744 $DIR/$XFILES"

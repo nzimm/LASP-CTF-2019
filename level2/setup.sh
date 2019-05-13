@@ -46,8 +46,8 @@ if [ $? -eq 0 ]; then
     done
 
     # Chown files to levelN:levelN
-    echo "sudo chown -R $LEVEL:$LEVEL $DIR/*"
-    sudo chown -R $LEVEL:$LEVEL $DIR/*
+    echo "sudo chown -R $USER:$USER $DIR/*"
+    sudo chown -R $USER:$USER $DIR/*
 
     # Set the SETGID bit on main binary
     echo "sudo chmod 2755 $DIR/$LEVEL"
