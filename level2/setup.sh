@@ -25,6 +25,7 @@ USER="$LEVEL"
 echo "make clean && make"
 make clean && make
 
+mkdir $BUILD_DIR/data
 # Generate data files
 $BUILD_DIR/generate_data_files.py
 
