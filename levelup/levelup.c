@@ -43,14 +43,14 @@ int main(int argc, char* argv[])
             char user[strlen(user_t) + 1];
             strncpy(user, user_t, sizeof(user));
 
-            // Save effective group in buffer
-            char *egroup_t = getpwuid(egid)->pw_name;
-            char egroup[strlen(egroup_t) + 1];
-            strncpy(egroup, egroup_t, sizeof(egroup));
+            // Save next group name in buffer
+            char *next_group_t = getpwuid(egid + 1)->pw_name;
+            char next_group[strlen(next_group_t) + 1];
+            strncpy(next_group, next_group_t, sizeof(next_group));
 
             // Setup gpasswd call
             char *gpasswd = "/usr/bin/gpasswd";
-            char *argv[] = { gpasswd, "-a", user, egroup, NULL};
+            char *argv[] = { gpasswd, "-a", user, next_group, NULL};
             char *envp[] = { NULL };
 
             // Grant root to update /etc/groups
