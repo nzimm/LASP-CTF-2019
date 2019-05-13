@@ -1,14 +1,18 @@
-# Level4 - tricking locally-resolved paths
-For this level, you'll need to 'trick' this script into reading the password
-file for you.
+# Level4 - introduction to cron, decyphering bash scripting
+For this level you'll need to research cron, and how you can use the installed
+crontab to get the password. The following is the output of `crontab -u level4 -l`
 
-This level is a step up - you're not in the big leagues yet, but you'll need a
-more intimate understanding of Linux and shell subtleties.
+```
+*/1 * * * * /bin/bash /ctf/level4/run.sh
+```
 
-## Potentially useful commands
-ln - create a link between files (symbolic links are most common)
+Unless you're already familiar with bash scripting, you'll probably have to do
+some additional research on bash to figure out how to script works.
+
+## Relevant commands
+crontab - Linux scheduling daemon
 
 ## Tips
-- this is the first level where you'll really need to think like an attacker.
-  instead of reading the script how the author intended, look for ways to
-  exploit it
+- You don't need to edit any crontabs for this level
+- The Wikipedia page on cron is actually pretty good, and a bit more clear than
+  the cron and crontab manpages

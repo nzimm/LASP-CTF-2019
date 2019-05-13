@@ -2,7 +2,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#define PASSLEN 17
+#define PASSLEN 32
 
 int main()
 {

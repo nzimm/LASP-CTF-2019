@@ -6,14 +6,15 @@
 
 # Level to be copied, chowned AND chmoded for SETGID
 LEVEL="level4"
-SGID_FILES="$LEVEL run"
 
 # Git directory that the files live under
 BUILD_DIR="/home/nizi2734/ctf.git/$LEVEL/"
 
 # Files to be copied and chowned only
-PASS_FILE="pass.txt"
-FILES="objective.md level4.c bin/ $PASS_FILE"
+FILES="objective.md $LEVEL.c pass.txt run.sh"
+
+# Files to be executable
+XFILES="run.sh"
 
 # Level directory (default to level)
 DIR="/ctf/$LEVEL"
@@ -25,13 +26,6 @@ USER="$LEVEL"
 # Run the makefile and wipe bin/
 echo "make clean && make"
 make clean && make
-echo "rm -rf pass.txt bin/"
-rm -rf pass.txt bin/
-
-# Setup bin/
-mkdir $BUILD_DIR/bin/
-ln -s $(which ls) $BUILD_DIR/bin/ls
-ln -s $(which cat) $BUILD_DIR/bin/cat
 
 
 # Ensure that the make exited successfuly
@@ -47,25 +41,42 @@ if [ $? -eq 0 ]; then
         sudo cp -rf $BUILD_DIR/$F $DIR/
     done
 
+    # Tighten passwd.txt permissions
+    echo "sudo chmod 440 $DIR/pass.txt"
+    sudo chmod 440 $DIR/pass.txt
+
     # Chown files to levelN:levelN
     echo "sudo chown -R $LEVEL:$LEVEL $DIR/*"
     sudo chown -R $LEVEL:$LEVEL $DIR/*
 
-    # Set the SETGID bit on main binary
-    for F in $SGID_FILES; do
-        echo "sudo chmod 2755 $DIR/$F"
-        sudo chmod 2755 $DIR/$F
-    done
+    # Make additional files executable
+    echo "sudo chmod 744 $DIR/$XFILES"
+    sudo chmod 744 $DIR/$XFILES
 
-    # Tighten read permissions on pass.txt
-    echo "sudo chmod 440 $DIR/$PASS_FILE"
-    sudo chmod 440 $DIR/$PASS_FILE
+    # Set the SETGID bit on main binary
+    echo "sudo chmod 2755 $DIR/$LEVEL"
+    sudo chmod 2755 $DIR/$LEVEL
 
 fi
+
+# Setup tmp cron directory
+echo "sudo rm -rf /tmp/.cron_level4"
+sudo rm -rf /tmp/.cron_level4
+
+echo "mkdir /tmp/.cron_level4"
+mkdir /tmp/.cron_level4
+
+echo "sudo chown level4:level4 /tmp/.cron_level4"
+sudo chown level4:level4 /tmp/.cron_level4
+
+echo "sudo chmod 733 /tmp/.cron_level4"
+sudo chmod 733 /tmp/.cron_level4
 
 # Clean up
 echo "make clean"
 make clean
 
-echo "rm -rf pass.txt bin/"
-rm -rf pass.txt bin/
+# Print warning to install crontab
+echo "[*] Warning [*]"
+echo "ensure crontab is installed for level4 user"
+echo "*/1 * * * * /bin/bash /ctf/level4/run.sh"
