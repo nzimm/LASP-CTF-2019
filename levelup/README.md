@@ -1,6 +1,5 @@
-# `levelup.c` - progression program
-
-This program is how students check their work, and climb the levels of this CTF
+# levelup.c - progression program
+This program is how students check-in their progress.
 It checks that the user has an effective group ID that belongs to one of the
 levels of the CTF, then adds their user to the level's supplementary group.
 
