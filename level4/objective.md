@@ -9,6 +9,8 @@ crontab to get the password. The following is the output of `crontab -u level4 -
 Unless you're already familiar with bash scripting, you'll probably have to do
 some additional research on bash to figure out how to script works.
 
+NOTE: if you mess anything up solving this level, me know so I can reset it
+
 ## Relevant commands
 crontab - Linux scheduling daemon
 
