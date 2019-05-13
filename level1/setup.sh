@@ -25,16 +25,17 @@ if [ $? -eq 0 ]; then
     echo "sudo cp -f $LEVEL $FILES $DIR/"
     sudo cp -f $LEVEL $FILES $DIR/
 
-    echo "sudo chown $LEVEL:$LEVEL $DIR/$LEVEL"
-    sudo chown $LEVEL:$LEVEL $DIR/$LEVEL
+    # Setup level ownership and permissions
+    echo "sudo chown $USER:$USER $DIR/$LEVEL"
+    sudo chown $USER:$USER $DIR/$LEVEL
+
+    echo "sudo chmod 2755 $DIR/$LEVEL"
+    sudo chmod 2755 $DIR/$LEVEL
 
     for F in $FILES; do
         echo "sudo chown $LEVEL:$LEVEL $DIR/$F"
         sudo chown $LEVEL:$LEVEL $DIR/$F
     done
-
-    echo "sudo chmod 2644 $DIR/$LEVEL"
-    sudo chmod 2755 $DIR/$LEVEL
 
 fi
 
