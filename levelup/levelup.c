@@ -7,18 +7,18 @@
 
 
 /*
- * Handles output on failure to pass validation
+ * Handle output on failure to pass validation
  */
-int error() {
-    printf("What are you doing?? Go back and break the level!\n"
-           "(This command only works if your EGID is level0-15)\n");
+int error(char *reason) {
+    printf("What are you doing?? You shouldn't be calling this!\n%s\n", reason);
     return 1;
 }
 
 /*
- * Checks calling user's RGID and EGID
- *   if they do not agree, then user is added to EGID group
- *   otherwise, print a rude message 
+ * Checks caller's real uid, gid and effective gid
+ *   uid must match rgid, and egid must be a valid level for user to leveled
+ *   Otherwise, print a rude message
+ *   NOTE: this assumes UID == GID for all level accounts
  */
 int main(int argc, char* argv[])
 {
@@ -27,35 +27,34 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    // Get UID and EGID
-    uid_t user_ID  = getuid();
-    gid_t group_ID = getegid();
+    // Get uid, gid and egid
+    uid_t uid  = getuid();
+    gid_t gid  = getgid();
+    gid_t egid = getegid();
 
-    // Save username in buffer
-    char *user_t = getpwuid(user_ID)->pw_name;
-    char user[strlen(user_t) + 1];
-    strncpy(user, user_t, sizeof(user));
+    // DEBUG
+    printf("uid: %d\ngid: %d\negid: %d\n", uid, gid, egid);
 
-    // Save groupname in buffer
-    char *group_t = getpwuid(group_ID)->pw_name;
-    char group[strlen(group_t) + 1];
-    strncpy(group, group_t, sizeof(group));
 
-    // Check that user has completed a level, and called this program with
-    // the setGID bit
-    if (user_ID != group_ID) {
+    // uid should equal gid (newgrp sets gid to level)
+    if (uid == gid) {
 
-        // Check that the EGID is of a valid level, and not from some other
-        // program with the setGID bit set
-        if (16000 <= group_ID && group_ID < 16015) {
+        // gid should not equal egid, and egid should be a valid level
+        if (gid != egid && 16000 <= egid && egid < 16015) {
 
-            // get next level's group name
-            char *next_level_t = getpwuid(group_ID+1)->pw_name;
-            char next_level[strlen(next_level_t) + 1];
-            strncpy(next_level, next_level_t, sizeof(next_level));
+            // Save username in buffer
+            char *user_t = getpwuid(uid)->pw_name;
+            char user[strlen(user_t) + 1];
+            strncpy(user, user_t, sizeof(user));
 
+            // Save effective group in buffer
+            char *egroup_t = getpwuid(egid)->pw_name;
+            char egroup[strlen(egroup_t) + 1];
+            strncpy(egroup, egroup_t, sizeof(egroup));
+
+            // Setup gpasswd call
             char *gpasswd = "/usr/bin/gpasswd";
-            char *argv[] = { gpasswd, "-a", user, next_level, NULL};
+            char *argv[] = { gpasswd, "-a", user, egroup, NULL};
             char *envp[] = { NULL };
 
             // Grant root to update /etc/groups
@@ -64,15 +63,15 @@ int main(int argc, char* argv[])
             // execve 'consumes' current process
             execve(gpasswd, argv, envp);
 
-            // This does not execute
+            // Should not reach this line
             return 2;
         }
         else {
-            return(error());
+            return(error("(EGID must be level1-15)"));
         }
     }
     else {
-        return(error());
+        return(error("(UID does not match GID, try relogging)"));
     }
 
     return 0;
