@@ -47,8 +47,8 @@ int main()
 
         else {
             printf("Before moving on to level 1, change your login shell to "
-                   "bash (you can switch it to whichever shell you'd like "
-                   "after passing this level). \n");
+                   "bash and re-run this program.\n(you can switch it to "
+                   "whichever shell you'd like after passing this level). \n");
             return 1;
         }
     }
