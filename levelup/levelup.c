@@ -32,10 +32,6 @@ int main(int argc, char* argv[])
     gid_t gid  = getgid();
     gid_t egid = getegid();
 
-    // DEBUG
-    printf("uid: %d\ngid: %d\negid: %d\n", uid, gid, egid);
-
-
     // uid should equal gid (newgrp sets gid to level)
     if (uid == gid) {
 
