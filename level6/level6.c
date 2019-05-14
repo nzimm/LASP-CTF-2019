@@ -21,7 +21,7 @@ int main()
     // Sleep for 0.2 seconds
     struct timespec len;
     len.tv_sec  = 0;
-    len.tv_nsec = 300000000L;
+    len.tv_nsec = 500000000L;
     nanosleep(&len, NULL);
 
     if ( strncmp(pin, guess, PIN_LEN) == 0 ) {
