@@ -53,12 +53,12 @@ if [ $? -eq 0 ]; then
     sudo chown level4 $LVL4_PASSWD
 
     # Set the SETGID bit on main binary
-    echo "sudo chmod 2755 $DIR/$LEVEL"
-    sudo chmod 2755 $DIR/$LEVEL
+    echo "sudo chmod 6755 $DIR/$LEVEL"
+    sudo chmod 6755 $DIR/$LEVEL
 
     # Tighten read permissions on pass.txt
-    echo "sudo chmod 440 $DIR/$PASS_FILE"
-    sudo chmod 440 $DIR/$PASS_FILE
+    echo "sudo chmod 400 $DIR/$PASS_FILE"
+    sudo chmod 400 $DIR/$PASS_FILE
 
 fi
 

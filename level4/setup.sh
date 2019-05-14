@@ -42,8 +42,8 @@ if [ $? -eq 0 ]; then
     done
 
     # Tighten passwd.txt permissions
-    echo "sudo chmod 440 $DIR/pass.txt"
-    sudo chmod 440 $DIR/pass.txt
+    echo "sudo chmod 400 $DIR/pass.txt"
+    sudo chmod 400 $DIR/pass.txt
 
     # Chown files to levelN:levelN
     echo "sudo chown -R $USER:$USER $DIR/*"
@@ -54,8 +54,8 @@ if [ $? -eq 0 ]; then
     sudo chmod 744 $DIR/$XFILES
 
     # Set the SETGID bit on main binary
-    echo "sudo chmod 2755 $DIR/$LEVEL"
-    sudo chmod 2755 $DIR/$LEVEL
+    echo "sudo chmod 6755 $DIR/$LEVEL"
+    sudo chmod 6755 $DIR/$LEVEL
 
 fi
 
@@ -77,6 +77,7 @@ echo "make clean"
 make clean
 
 # Print warning to install crontab
+echo
 echo "[*] Warning [*]"
 echo "ensure crontab is installed for level4 user"
 echo "*/1 * * * * /bin/bash /ctf/level4/run.sh"
