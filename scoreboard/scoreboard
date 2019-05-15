@@ -46,7 +46,7 @@ def main():
                 scores.append(fields)
 
     # Sort the fields in reverse level order
-    scores.sort(key=lambda i: i[0], reverse=True)
+    scores.sort(key=lambda i: i[2], reverse=True)
 
     # Output scoreboard
     for level in scores:
