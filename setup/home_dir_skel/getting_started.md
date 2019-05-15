@@ -1,6 +1,6 @@
 # LASP shell & Linux training, Summer 2019
 ## Getting started
-Hey! Now that you've got access to the training machine, what's next?
+Welcome! Now that you've got access to the training machine, what's next?
 
 
 ### Levels
