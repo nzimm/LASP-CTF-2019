@@ -20,7 +20,7 @@ DIR="/ctf/$LEVEL"
 USER="$LEVEL"
 
 
-# Run the makefile and wipe bin/
+# Run the makefile
 echo "make clean && make"
 make clean && make
 
