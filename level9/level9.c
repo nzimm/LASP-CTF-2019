@@ -7,7 +7,7 @@ int main() {
     char input[128];
 
     gets(input);
-    printf("%s\n%s\n", input);
+    printf("%s\n", input);
 
     if (strncmp(check, "\xde\xfa\xce\xd0", 4) == 0)
     {
