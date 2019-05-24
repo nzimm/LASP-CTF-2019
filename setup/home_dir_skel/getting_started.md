@@ -5,14 +5,15 @@ Welcome! Now that you've got access to the training machine, what's next?
 
 ### Levels
 All of the level information is stored at the `/ctf/` directory. Each level
-contains an `objective` to get you started.
+contains an `objective` file with information to get you started.
 
 Ask lots of questions, use Google, and don't stress out - if you decide this
-isn't your jam, feel free to stop after the cutoff.
+isn't your jam, don't feel pressured to grind all the way to the end. The later
+levels get more difficult, intended to be a challenge throughout the summer.
 
 
-### Administrative reccomendations
-These are all optional:
+### Administrative recommendations
+While these are all optional:
 
 1.  Change your password - stay away from reusing important passwords.
     After all, this machine is filled with vulnerable software, and if
@@ -22,8 +23,8 @@ These are all optional:
 2.  SSH keys - this lets you log onto the machine without using a password.
     It's not mandatory, but it can make your life easier here, and when jumping
     between hosts on the LASP network. This link should help you get started:
-    https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2
+    [https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2]
 
-3.  Get comfortable with Vim (or nano) while - not a requirement, editing
-    files without a GUI is pretty important for working with headless systems.
-    Nano easier to learn, but Vim has more extensive features and plugins.
+3.  Get comfortable with Vim (or nano) - being able to edit files without a GUI
+    may seem archaic, but you'll find it invaluable while working at LASP. Nano
+    is easier to learn, but Vim has more extensive features and plugins.
