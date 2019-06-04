@@ -40,7 +40,7 @@ with open(urand, "rb") as URAND:
             if i in selected_files:
                 buf = URAND.read(128)
                 m.update(buf)
-                passwd = "password:" + m.hexdigest()[0:16]
+                passwd = ":" + m.hexdigest()[0:16] + ":"
                 OUT_FILE.seek(random.randrange(0, file_size))
                 print("writing {} to {}".format(passwd, data_file_path))
                 OUT_FILE.write(bytes(passwd, 'utf-8'))
