@@ -5,7 +5,8 @@ Welcome! Now that you've got access to the training machine, what's next?
 
 ### Levels
 All of the level information is stored at the `/ctf/` directory. Each level
-contains an `objective` file with information to get you started.
+contains an `objective` file with information to get you started. Begin with
+`/ctf/level0`.
 
 Ask lots of questions, use Google, and don't stress out - if you decide this
 isn't your jam, don't feel pressured to grind all the way to the end. The later
