@@ -10,7 +10,7 @@ seg fault, then run GDB with the same input.
 - You can print arbitrary binary data using python2 print statements like:
   `python2 -c "print 'ABCD' + b'\xde\xad\xbe\xef'"`
 
-- GDB is a pain to use, feel free to ask for help if you need a starting point.
+- GDB is a pain to learn, feel free to ask for help if you need a starting point.
   After getting your bearings, you'll start figuring out the stack best by trying
   different inputs and examining the stack.
 
