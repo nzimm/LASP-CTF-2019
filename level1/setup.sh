@@ -29,13 +29,15 @@ if [ $? -eq 0 ]; then
     echo "sudo chown $USER:$USER $DIR/$LEVEL"
     sudo chown $USER:$USER $DIR/$LEVEL
 
-    echo "sudo chmod 2755 $DIR/$LEVEL"
-    sudo chmod 2755 $DIR/$LEVEL
-
     for F in $FILES; do
         echo "sudo chown $LEVEL:$LEVEL $DIR/$F"
         sudo chown $LEVEL:$LEVEL $DIR/$F
+        echo "sudo chmod 440 $DIR/$F"
+        sudo chmod 440 $DIR/$F
     done
+
+    echo "sudo chmod 2550 $DIR/$LEVEL"
+    sudo chmod 2550 $DIR/$LEVEL
 
 fi
 
