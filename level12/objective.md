@@ -3,11 +3,12 @@ The last level already contained code that you wanted to use - but what if you
 want to run custom code? If you can get your code into the process memory and
 jump to it, you can execute arbitrary instructions!
 
-I've included raw shellcode that will run 'levelup' if executed, along with a
-simple python script to print it.
+Traditional shellcode is a small amount of machine language that spawns a shell
+when run by the processor.
 
-You'll need to overwrite the return address to redirect execution to where
-your shellcode gets placed in memory.
+I've provided shellcode that will not open a shell, but instead calls levelup
+directly. Your goal is to inject the shellcode into the process memory, then
+overwrite the return address to point to the start of your shellcode.
 
 ## Tips
 - For the shellcode to run, you need to overwrite the return address to
