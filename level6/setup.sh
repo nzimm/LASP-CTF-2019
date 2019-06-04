@@ -43,17 +43,18 @@ if [ $? -eq 0 ]; then
     # Chown files to levelN:levelN
     echo "sudo chown -R $USER:$USER $DIR/*"
     sudo chown -R $USER:$USER $DIR/*
+    echo "sudo chmod 440 $DIR/*"
+    sudo chmod 440 $DIR/*
 
     # Set special ownership on main binary and pin.txt
     echo "sudo chown $USER:$USER $DIR/$LEVEL $DIR/pin.txt"
     sudo chown $USER:$USER $DIR/$LEVEL $DIR/pin.txt
 
-    echo "sudo chmod 6755 $DIR/$LEVEL"
-    sudo chmod 6755 $DIR/$LEVEL
+    echo "sudo chmod 6550 $DIR/$LEVEL"
+    sudo chmod 6550 $DIR/$LEVEL
 
-    # Restrict pin.txt permissions
     echo "sudo chmod 400 $DIR/pin.txt"
-    sudo chmod 600 $DIR/pin.txt
+    sudo chmod 400 $DIR/pin.txt
 
 fi
 

@@ -39,6 +39,8 @@ if [ $? -eq 0 ]; then
     for F in $FILES; do
         echo "sudo cp -rf $BUILD_DIR/$F $DIR/"
         sudo cp -rf $BUILD_DIR/$F $DIR/
+        echo "sudo chmod 440 $DIR/$F"
+        sudo chmod 440 $DIR/$F
     done
 
     # Tighten passwd.txt permissions
@@ -50,12 +52,12 @@ if [ $? -eq 0 ]; then
     sudo chown -R $USER:$USER $DIR/*
 
     # Make additional files executable
-    echo "sudo chmod 744 $DIR/$XFILES"
-    sudo chmod 744 $DIR/$XFILES
+    echo "sudo chmod 550 $DIR/$XFILES"
+    sudo chmod 550 $DIR/$XFILES
 
     # Set the SETGID bit on main binary
-    echo "sudo chmod 6755 $DIR/$LEVEL"
-    sudo chmod 6755 $DIR/$LEVEL
+    echo "sudo chmod 6550 $DIR/$LEVEL"
+    sudo chmod 6550 $DIR/$LEVEL
 
 fi
 

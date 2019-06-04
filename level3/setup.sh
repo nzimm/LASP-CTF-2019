@@ -41,11 +41,17 @@ if [ $? -eq 0 ]; then
     for F in $FILES; do
         echo "sudo cp -rf $BUILD_DIR/$F $DIR/"
         sudo cp -rf $BUILD_DIR/$F $DIR/
+        echo "sudo chmod 440 $DIR/*"
+        sudo chmod 440 $DIR/*
     done
 
     # Chown files to levelN:levelN
     echo "sudo chown -R $USER:$USER $DIR/*"
     sudo chown -R $USER:$USER $DIR/*
+
+    # Make directorys under data/ executable
+    echo "sudo find $DIR -type d -exec chmod 550 {} +"
+    sudo find $DIR -type d -exec chmod 550 {} +
 
     # Chown the special password file to level4
     LVL4_PASSWD=$(find /ctf/$LEVEL/data/ -name $(cat $BUILD_DIR/$PASS_FILE))
@@ -53,8 +59,8 @@ if [ $? -eq 0 ]; then
     sudo chown level4 $LVL4_PASSWD
 
     # Set the SETGID bit on main binary
-    echo "sudo chmod 6755 $DIR/$LEVEL"
-    sudo chmod 6755 $DIR/$LEVEL
+    echo "sudo chmod 6550 $DIR/$LEVEL"
+    sudo chmod 6550 $DIR/$LEVEL
 
     # Tighten read permissions on pass.txt
     echo "sudo chmod 400 $DIR/$PASS_FILE"

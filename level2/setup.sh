@@ -48,10 +48,16 @@ if [ $? -eq 0 ]; then
     # Chown files to levelN:levelN
     echo "sudo chown -R $USER:$USER $DIR/*"
     sudo chown -R $USER:$USER $DIR/*
+    echo "sudo chmod 440 $DIR/*"
+    sudo chmod 440 $DIR/*
+
+    # Make data/ executable
+    echo "sudo chmod 550 $DIR/data"
+    sudo chmod 550 $DIR/data
 
     # Set the SETGID bit on main binary
-    echo "sudo chmod 6755 $DIR/$LEVEL"
-    sudo chmod 6755 $DIR/$LEVEL
+    echo "sudo chmod 6550 $DIR/$LEVEL"
+    sudo chmod 6550 $DIR/$LEVEL
 
     # Tighten read permissions on pass.txt
     echo "sudo chmod 400 $DIR/$PASS_FILE"
