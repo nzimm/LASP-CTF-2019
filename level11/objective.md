@@ -17,7 +17,7 @@ seg fault, then run GDB with the same input.
 ## intro to GDB
 - `$ gdb level11`             - launch gdb on the level11 executable
 - `(gdb) b main`              - set a breakpoint at the start of `main()`
-- `(gdb) disas [function]`    - display the disassembeled instructions for a function
+- `(gdb) disas [function]`    - display the disassembled instructions for a function
 - `(gdb) x/5xw $ebp`          - examine 5 words of data (displayed in hex) from the
          | |||  |               address ebp is pointing at
          | |||  |
