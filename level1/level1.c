@@ -1,3 +1,6 @@
+/*
+ * gcc -m32 -mpreferred-stack-boundary=2 -fno-stack-protector -z execstack
+ */
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
