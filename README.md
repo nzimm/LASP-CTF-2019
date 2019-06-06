@@ -1,50 +1,18 @@
 # Introductory CTF for LASP Summer 2019 training
-CTF to teach self-learning to Linux beginners and foster understanding of shell
-fundamental
+CTF to teach self-learning in Linux, and foster an understanding of application
+security fundamentals
 
 ## Overview
-CTF stands for Capture The Flag. This CTF has [???] levels, which range from
-introductory concepts to advanced ones. Ideally this exercise proves
-informative to beginners, while still engaging to power users.
+CTFs are a popular way to learn about computer security without breaking any
+laws. The target audience for CTF newcomers to Linux and/or computer security.
+- Levels 0-4 focus on core Linux command usage.
+- Levels 5-8 cover shell security
+- Levels 9+ look into buffer overflows, shellcode injection, and bounds checking
 
-## How do I get started?
-The slideshow should provide a more thorough introduction, but here's a brief
-summary:
-- You will have an account created on the training host
-- Level material can be found the `/ctf/` directory
-- Starting at `level0`, `objective.md` contains the challenge details
-  level
+Hopefully, the spectrum of difficulty will provide value to students with a
+variety of experience levels.
 
-## Level group 1 (delim TBD)
-The first group of levels focus on building a fundamental knowledge of the
-Linux command line. After reaching level 5, you should be able to:
-1. Discover and switch between different shells on the system
-2. Lookup and modify environment variables
-3. Use and effectively search `man` pages
-4. Basic file I/O with shell commands and pipes
-5. Basic scripting
-
-## Level group 2
-Shell script security
-1. Environment manipulation
-2. Input sanitation
-
-## Level group 3
-Intermediate security concepts
-1. Buffer overflows
-2. Integer overflows
-
-## Setup guide
-Setup scripts live in the `setup/` directory - they use sudo, as root
-premissions are required to create the directories, add users, etc.
-
-### Level initialization
-Levels are contained in `/ctf/` and are created with empty subdirectories by
-running the `init_levels.sh` script.
-
-Each level contains an admin setup file that discuses what steps to take when
-setting up initially.
-
-### User creation
-The `make_users.sh` script reads names from the `users.txt` file and creates
-accounts for them.
+## Getting started
+1. Log into the training machine with your provided credentials
+2. Skim the "getting started" file
+3. `cd` to `/ctf/level0` and read the objective file
