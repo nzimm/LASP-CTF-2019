@@ -53,8 +53,8 @@ if [ $? -eq 0 ]; then
     echo "sudo chmod 6550 $DIR/$LEVEL"
     sudo chmod 6550 $DIR/$LEVEL
 
-    echo "sudo chmod 400 $DIR/pin.txt"
-    sudo chmod 400 $DIR/pin.txt
+    echo "sudo chmod 600 $DIR/pin.txt"
+    sudo chmod 600 $DIR/pin.txt
 
 fi
 
