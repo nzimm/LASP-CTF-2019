@@ -23,7 +23,7 @@ def main():
     parser.add_argument('-a', '--all', action='store_true', default=False,
                         help='display all user scores')
     parser.add_argument('exclude', metavar='USER', type=str, nargs='*',
-                        default='nizi2734', help='list of users not to display')
+                        default='nizi2734', help='user to exclude from scoreboard')
     args = parser.parse_args()
 
     if args.all:
