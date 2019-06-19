@@ -1,9 +1,10 @@
 #!/bin/bash
+# inspired by root-me.org
 
 CRONDIR="/tmp/.cron_level4"
 
 # discard stdin, stderr
-exec 1>/dev/null 2>&1
+exec &>/dev/null
 
 if [ ! -d "$CRONDIR" ]; then
     mkdir -m 733 "$CRONDIR"
